@@ -11,7 +11,8 @@
 install.packages(c("rmarkdown", "Rcpp", "knitr",
                    "testthat", "remotes", "qpdf",
                    "shiny",   "pacman", "covr",
-                   "withr", "devtools"))
+                   "withr", "devtools", "lightgbm",
+                   "torch", "luz"))
 
 #
 # Check the environment type

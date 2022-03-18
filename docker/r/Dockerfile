@@ -84,5 +84,7 @@ RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DE
 ARG BASE_USER=root
 USER ${BASE_USER}
 
+RUN echo "torch::install_torch()" | R --no-save
+
 USER ${ROOT_USER}
 

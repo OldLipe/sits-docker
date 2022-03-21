@@ -87,4 +87,3 @@ USER ${BASE_USER}
 RUN echo "torch::install_torch()" | R --no-save
 
 USER ${ROOT_USER}
-

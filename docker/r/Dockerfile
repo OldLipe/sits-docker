@@ -5,7 +5,7 @@
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-ARG BASE_IMAGE=brazildatacube/sits-base:20.04
+ARG BASE_IMAGE=sits-dev/sits-base:0.16.3
 FROM ${BASE_IMAGE}
 
 #
@@ -25,7 +25,9 @@ RUN apt update -y \
     && apt install -y \
         gnupg2 \
         software-properties-common \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 \
+	gpg \
+        gpg-agent \
+    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 \
     && add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" \
     && apt update -y \
     && apt-get install -y --no-install-recommends \
@@ -75,9 +77,8 @@ RUN install2.r --error \
 #
 COPY install.R .
 
-ARG SITS_TAG_VERSION
 ARG SITS_ENVIRONMENT_TYPE=full
-RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DESCRIPTION \
+RUN wget https://raw.githubusercontent.com/e-sensing/sits/dev/DESCRIPTION \
     && Rscript install.R \
     && rm install.R DESCRIPTION
 

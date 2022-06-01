@@ -6,10 +6,9 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 #
-# Satellite Image Time Series
+# install sits from CRAN
 #
-sits_tag_version <- Sys.getenv("SITS_TAG_VERSION")
-remotes::install_github(paste0("e-sensing/sits@", sits_tag_version), dependencies = FALSE)
+install.packages("sits")
 
 #
 # Change the download method 

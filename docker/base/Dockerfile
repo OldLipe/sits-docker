@@ -5,8 +5,6 @@
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-#ARG BASE_IMAGE=osgeo/gdal:ubuntu-full-3.4.3
-#ARG BASE_IMAGE=osgeo/gdal:ubuntu-full-3.3.1
 ARG BASE_IMAGE=ubuntu:20.04
 FROM ${BASE_IMAGE}
 

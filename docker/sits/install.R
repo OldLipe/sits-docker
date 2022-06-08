@@ -6,9 +6,10 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 #
-# install sits from CRAN
+# Installing sits
 #
-install.packages("sits")
+sits_tag_version <- Sys.getenv("SITS_TAG_VERSION")
+remotes::install_github(paste0("e-sensing/sits@", sits_tag_version), dependencies = TRUE)
 
 #
 # Change the download method 

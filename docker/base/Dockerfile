@@ -5,6 +5,8 @@
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
+#ARG BASE_IMAGE=osgeo/gdal:ubuntu-full-3.4.3
+#ARG BASE_IMAGE=osgeo/gdal:ubuntu-full-3.3.1
 ARG BASE_IMAGE=ubuntu:20.04
 FROM ${BASE_IMAGE}
 
@@ -25,8 +27,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Installing the dependencies.
 #
 RUN apt-get update -y \
+    && apt-get install -y software-properties-common --no-install-recommends \
+    && add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
+    && apt-get update -y \ 
     && apt-get install -y --no-install-recommends \
-    gdal-bin git \
+   gdal-bin git \
     htop \
     locales \
     lbzip2 \
@@ -37,6 +42,7 @@ RUN apt-get update -y \
     libhdf4-alt-dev libhdf5-dev \
     libjq-dev \
     libnetcdf-dev \
+    libxml2 \
     libpq-dev libproj-dev libprotobuf-dev \
     libsqlite3-dev libssl-dev \
     libudunits2-dev libunwind-dev \

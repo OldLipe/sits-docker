@@ -5,7 +5,7 @@
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-ARG BASE_IMAGE=brazildatacube/sits-base:20.04
+ARG BASE_IMAGE=brazildatacube/sits-r-base-gdal340:1.0.1
 FROM ${BASE_IMAGE}
 
 #
@@ -49,7 +49,7 @@ RUN ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r \
 # Installing GeoSpatial dependencies
 #  > based on: https://github.com/rocker-org/geospatial
 #
-RUN install2.r --error \
+RUN install2.r -n 1 --error \
     classInt \
     deldir \
     geosphere gstat \
@@ -77,7 +77,7 @@ RUN install2.r --error \
 #
 COPY install.R .
 
-ARG SITS_TAG_VERSION
+ARG SITS_TAG_VERSION=v1.0.0
 ARG SITS_ENVIRONMENT_TYPE=full
 RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DESCRIPTION \
     && Rscript install.R \

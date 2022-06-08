@@ -5,7 +5,7 @@
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-ARG BASE_IMAGE=brazildatacube/sits:0.17.0
+ARG BASE_IMAGE=brazildatacube/sits-4-swiss-r-latest-sits:1.0.0
 FROM ${BASE_IMAGE}
 
 #
@@ -27,6 +27,7 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 WORKDIR /root
 RUN apt-get update -y \
     && apt-get install -y \
+        libxkbcommon-x11-0 \
         gdebi-core \
         tini \
         psmisc \
@@ -34,8 +35,8 @@ RUN apt-get update -y \
         libclang-dev \
     && rm -rf /var/lib/apt/lists/*
 
-ARG RSTUDIO_VERSION=rstudio-server-2022.02.2-485-amd64
-RUN wget https://download2.rstudio.org/server/bionic/amd64/${RSTUDIO_VERSION}.deb --no-check-certificate \
+ARG RSTUDIO_VERSION=rstudio-server-2022.06.0-daily-469-amd64
+RUN wget https://s3.amazonaws.com/rstudio-ide-build/server/jammy/amd64/${RSTUDIO_VERSION}.deb --no-check-certificate \
     && gdebi ${RSTUDIO_VERSION}.deb -n \
     && rm ${RSTUDIO_VERSION}.deb
 

@@ -6,9 +6,10 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 #
-# install sits from CRAN
+# Installing sits package
 #
-install.packages("sits")
+sits_tag_version <- Sys.getenv("SITS_TAG_VERSION")
+remotes::install_github(paste0("e-sensing/sits@", sits_tag_version), dependencies = FALSE)
 
 #
 # Change the download method 
@@ -16,7 +17,7 @@ install.packages("sits")
 options(download.file.method = "wget") 
 
 #
-# Satellite Image Time Series Example Datasets
+# # Installing sitsdata package
 #
 sitsdata_commit_ref <- Sys.getenv("SITSDATA_COMMIT_REF")
 remotes::install_github(paste0("e-sensing/sitsdata@", sitsdata_commit_ref), dependencies = FALSE)

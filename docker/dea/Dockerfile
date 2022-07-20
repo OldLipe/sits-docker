@@ -19,9 +19,10 @@ LABEL "org.brazildatacube.maintainer"="Brazil Data Cube <brazildatacube@inpe.br>
 LABEL "org.brazildatacube.description"="JupyerLab with sits notebooks."
 
 ARG SITS_NOTEBOOK_REPO=e-sensing/sitsnotebooks.git
+ARG SITS_TAG_VERSION
 
 USER ${BASE_USER}
 
 WORKDIR /home/${BASE_USER}
 
-RUN git clone -c advice.detachedHead=false -b v${SITS_TAG_VERSION} https://github.com/${SITS_NOTEBOOK_REPO} --single-branch
+RUN git clone -c advice.detachedHead=false -b ${SITS_TAG_VERSION} https://github.com/${SITS_NOTEBOOK_REPO} --single-branch

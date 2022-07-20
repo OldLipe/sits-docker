@@ -123,3 +123,16 @@ docker build ${SITS_BUILD_MODE} \
        --build-arg BASE_IMAGE=${SITS_RSTUDIO_DOCKER_IMAGE_TAG} \
        -t ${SITS_JUPYTER_DOCKER_IMAGE_TAG} \
        --file Dockerfile  .
+
+#
+# Build Jupyter for SITS image
+#
+echo "Building Jupyter deafrica notebooks for Jupyter image..."
+cd ../dea
+
+SITS_JUPYTER_DEAFRICA_DOCKER_IMAGE_TAG="${SITS_TAG_PREFIX}/sits-dea:${SITS_TAG_VERSION}"
+docker build ${SITS_BUILD_MODE} \
+       --build-arg BASE_IMAGE=${SITS_JUPYTER_DOCKER_IMAGE_TAG} \
+       --build-arg SITS_TAG_VERSION=v${SITS_TAG_VERSION} \
+       -t ${SITS_JUPYTER_DEAFRICA_DOCKER_IMAGE_TAG} \
+       --file Dockerfile  .

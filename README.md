@@ -28,6 +28,7 @@ If you want to get started, see below for a step-by-step guide to using the `RSt
 
 ## Using the SITS R Package with RStudio <img src=".github/logo/sits-docker-env-rstudio.png" align="right" width="120"/>
 
+
 To use the RStudio environment with SITS-enabled, you can run a container from the [brazildatacube/sits-rstudio:0.17.0](https://hub.docker.com/r/brazildatacube/sits-rstudio) image, which is made available on DockerHub. For this, the following command can be used:
 
 ```shell
@@ -35,6 +36,7 @@ docker run --detach \
            --publish 127.0.0.1:8787:8787 \
            --name my-sits-rstudio \
            brazildatacube/sits-rstudio:0.17.0
+
 ```
 
 Then, open the URL `http://127.0.0.1:8787` in a web browser:
@@ -87,7 +89,7 @@ To build the images with the Dockerfiles contained in this repository, it is pos
 - `-e`: SITS environment type (`full` or `minimal`. Default is `full`).
 - `-h`: show a help message.
 
-Below is an example of using the utility script. The tag name defined for the SITS image is `0.16.2`.
+Below is an example of using the utility script. The tag name defined for the SITS image is `1.1.0`.
 
 ```shell
 ./build.sh -n -p brazildatacube -t 0.17.0

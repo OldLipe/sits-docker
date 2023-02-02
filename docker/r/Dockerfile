@@ -5,7 +5,7 @@
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-ARG BASE_IMAGE=brazildatacube/sits-base:1.2.0
+ARG BASE_IMAGE=brazildatacube/sits-base-gpu:1.2.0
 FROM ${BASE_IMAGE}
 
 #
@@ -76,7 +76,7 @@ RUN install2.r --error \
 #
 COPY install.R .
 
-ARG SITS_TAG_VERSION
+ARG SITS_TAG_VERSION=v1.2.0-3
 ARG SITS_ENVIRONMENT_TYPE
 RUN wget https://raw.githubusercontent.com/e-sensing/sits/${SITS_TAG_VERSION}/DESCRIPTION \
     && Rscript install.R \
@@ -92,20 +92,6 @@ RUN echo "torch::install_torch()" | R --no-save
 #
 COPY install_irkernel.sh create_user_dir.R /usr/local/bin/
 
-#
-# Install IRkernel for R kernel in jupyter notebooks and creating the 
-# user's package directory
-#
-RUN chmod -R a+rx /usr/local/bin/ \ 
-    && /usr/local/bin/install_irkernel.sh \ 
-    && fix-permissions "/home/${BASE_USER}" 
-
-
 USER ${BASE_USER}
-
-#
-# Create an R personal directory to the base user
-#
-RUN Rscript /usr/local/bin/create_user_dir.R
 
 WORKDIR "/home/${BASE_USER}"

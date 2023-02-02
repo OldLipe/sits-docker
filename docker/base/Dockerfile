@@ -5,7 +5,7 @@
 # SITS Docker is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-ARG BASE_IMAGE=jupyter/base-notebook:ubuntu-20.04
+ARG BASE_IMAGE=nvidia/cuda:11.3.0-cudnn8-devel-ubuntu20.04
 FROM ${BASE_IMAGE}
 
 #
